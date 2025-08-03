@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "nombre": "Alimento para Gato",
+    "precio": 15.50,
+    "imagen": "./img/alimentogato.png"
+  },
+  {
+    "id": 2,
+    "nombre": "Alimento para Hamster",
+    "precio": 3.75,
+    "imagen": "./img/alimentohamster.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Alimento para Peces",
+    "precio": 6.25,
+    "imagen": "./img/alimentopecs.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Alimento para Perro",
+    "precio": 22.00,
+    "imagen": "./img/alimentoperro.png"
+  },
+  {
+    "id": 5,
+    "nombre": "Alimento para Tortuga",
+    "precio": 7.99,
+    "imagen": "./img/alimentotortuga.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "Antipulgas para Perro",
+    "precio": 18.50,
+    "imagen": "./img/antipulgas perro.jpg"
+  },
+  {
+    "id": 7,
+    "nombre": "Antocaída de Pelo para Gatos",
+    "precio": 14.00,
+    "imagen": "./img/antocaidapelosgatos.png"
+  },
+  {
+    "id": 8,
+    "nombre": "Arena para Gato 5L",
+    "precio": 8.75,
+    "imagen": "./img/arena_5lts-e1725497303430.jpg"
+  },
+  {
+    "id": 9,
+    "nombre": "Areneros para Gato",
+    "precio": 12.99,
+    "imagen": "./img/areneros-para-gato.jpg"
+  },
+  {
+    "id": 10,
+    "nombre": "Bebedero para Aves",
+    "precio": 5.00,
+    "imagen": "./img/bebederoaves.jpg"
+  },
+  {
+    "id": 11,
+    "nombre": "Casa para Perro",
+    "precio": 50.00,
+    "imagen": "./img/casaperro.jpg"
+  },
+  {
+    "id": 12,
+    "nombre": "Correa para Perros",
+    "precio": 9.50,
+    "imagen": "./img/correaperros.jpg"
+  },
+  {
+    "id": 13,
+    "nombre": "Juguete Hueso",
+    "precio": 6.25,
+    "imagen": "./img/huesito.jpeg"
+  },
+  {
+    "id": 14,
+    "nombre": "Jaula para Hamster",
+    "precio": 25.00,
+    "imagen": "./img/jaulahamster2.jpg"
+  },
+  {
+    "id": 15,
+    "nombre": "Kit Acuario",
+    "precio": 35.00,
+    "imagen": "./img/Kit-acuario.png"
+  },
+  {
+    "id": 16,
+    "nombre": "Limpieza de Acuarios",
+    "precio": 9.99,
+    "imagen": "./img/limpia acuarios.jpg"
+  },
+  {
+    "id": 17,
+    "nombre": "Rascador para Gatos",
+    "precio": 25.00,
+    "imagen": "./img/rascador-para-gatos.jpg"
+  },
+  {
+    "id": 18,
+    "nombre": "Pecera",
+    "precio": 28.00,
+    "imagen": "./img/pecsera1.jpg"
+  },
+  {
+    "id": 19,
+    "nombre": "Shampoo para Gatos",
+    "precio": 11.25,
+    "imagen": "./img/shampoogatos.jpg"
+  },
+  {
+    "id": 20,
+    "nombre": "Shampoo para Perro",
+    "precio": 10.50,
+    "imagen": "./img/shampoooperr.png"
+  },
+  {
+    "id": 21,
+    "nombre": "Shampoo para Perro Cachorro",
+    "precio": 10.50,
+    "imagen": "./img/shampooperrcachorro.jpeg"
+  }
+]
