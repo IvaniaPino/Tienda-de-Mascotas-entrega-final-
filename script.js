@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchProductos = async () => {
         try {
             const response = await fetch('productos.json');
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const data = await response.json();
             productos = data;
             renderProducts(productos);
@@ -22,13 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Función para renderizar los productos en la cuadrícula
+    // Función para renderizar los productos
     const renderProducts = (productsToRender) => {
         productList.innerHTML = '';
         if (productsToRender.length === 0) {
-            productList.innerHTML = '<p class="text-center text-gray-500 mt-10 text-xl font-semibold">No se encontraron productos en esta categoría.</p>';
+            productList.innerHTML = '<p class="text-center text-gray-500 mt-10 text-xl font-semibold">No se encontraron productos.</p>';
             return;
         }
+
         productsToRender.forEach(producto => {
             const productItem = document.createElement('div');
             productItem.classList.add('product-item');
@@ -41,25 +43,20 @@ document.addEventListener('DOMContentLoaded', () => {
             productList.appendChild(productItem);
         });
 
-        // Añadir evento a los nuevos botones
         document.querySelectorAll('.add-to-cart-btn').forEach(button => {
             button.addEventListener('click', (e) => {
                 const productId = parseInt(e.target.dataset.id);
                 const productoSeleccionado = productos.find(p => p.id === productId);
-                if (productoSeleccionado) {
-                    agregarAlCarrito(productoSeleccionado);
-                }
+                if (productoSeleccionado) agregarAlCarrito(productoSeleccionado);
             });
         });
     };
 
-    // Función para actualizar el contador del carrito
     const updateCartCount = () => {
         const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
         cartCountSpan.textContent = totalItems;
     };
 
-    // Función para agregar un producto al carrito
     const agregarAlCarrito = (producto) => {
         const itemExistente = carrito.find(item => item.id === producto.id);
         if (itemExistente) {
@@ -80,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }).showToast();
     };
 
-    // Función para renderizar el carrito
     const renderCart = () => {
         cartModalOverlay.innerHTML = '';
         const cartModal = document.createElement('div');
@@ -135,10 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
         cartModal.appendChild(cartItemsContainer);
         cartModal.appendChild(cartSummary);
         cartModal.appendChild(cartActions);
-
         cartModalOverlay.appendChild(cartModal);
 
-        // Añadir eventos a los botones del modal
         document.querySelectorAll('.remove-item-btn').forEach(button => {
             button.addEventListener('click', (e) => {
                 const productId = parseInt(e.target.dataset.id);
@@ -150,7 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('checkout-btn').addEventListener('click', finalizarCompra);
     };
 
-    // Función para eliminar un producto del carrito
     const eliminarDelCarrito = (productId) => {
         carrito = carrito.filter(item => item.id !== productId);
         localStorage.setItem('carrito', JSON.stringify(carrito));
@@ -158,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCart();
     };
 
-    // Función para vaciar el carrito
     const vaciarCarrito = () => {
         carrito = [];
         localStorage.setItem('carrito', JSON.stringify(carrito));
@@ -166,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCart();
     };
 
-    // Función para finalizar la compra
     const finalizarCompra = () => {
         if (carrito.length === 0) {
             Swal.fire({
@@ -189,41 +180,55 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Event listeners del DOM
     viewCartBtn.addEventListener('click', () => {
         renderCart();
         cartModalOverlay.classList.add('visible');
     });
 
-    // Función para filtrar productos por categoría
     const filterProducts = (category) => {
         let filteredProducts = [];
-        if (category === 'alimentos') {
-            filteredProducts = productos.filter(p => p.nombre.toLowerCase().includes('alimento'));
-        } else if (category === 'cuidados') {
-            filteredProducts = productos.filter(p => p.nombre.toLowerCase().includes('antipulgas') || p.nombre.toLowerCase().includes('shampoo') || p.nombre.toLowerCase().includes('antipulgas') || p.nombre.toLowerCase().includes('caída'));
-        } else if (category === 'habitad') {
-            filteredProducts = productos.filter(p => p.nombre.toLowerCase().includes('casa') || p.nombre.toLowerCase().includes('jaula') || p.nombre.toLowerCase().includes('pecera') || p.nombre.toLowerCase().includes('arenero') || p.nombre.toLowerCase().includes('acuario'));
-        } else if (category === 'otros') {
-            filteredProducts = productos.filter(p => p.nombre.toLowerCase().includes('juguete') || p.nombre.toLowerCase().includes('correa'));
-        } else {
-            // Si la categoría no coincide, mostramos todos los productos
-            filteredProducts = productos;
+
+        switch (category) {
+            case 'alimentos':
+                filteredProducts = productos.filter(p => p.nombre.toLowerCase().includes('alimento'));
+                break;
+            case 'cuidados':
+                filteredProducts = productos.filter(p =>
+                    p.nombre.toLowerCase().includes('antipulgas') ||
+                    p.nombre.toLowerCase().includes('shampoo') ||
+                    p.nombre.toLowerCase().includes('caída')
+                );
+                break;
+            case 'habitat':
+                filteredProducts = productos.filter(p =>
+                    p.nombre.toLowerCase().includes('casa') ||
+                    p.nombre.toLowerCase().includes('jaula') ||
+                    p.nombre.toLowerCase().includes('pecera') ||
+                    p.nombre.toLowerCase().includes('arenero') ||
+                    p.nombre.toLowerCase().includes('acuario')
+                );
+                break;
+            case 'otros':
+                filteredProducts = productos.filter(p =>
+                    p.nombre.toLowerCase().includes('juguete') ||
+                    p.nombre.toLowerCase().includes('correa')
+                );
+                break;
+            default:
+                filteredProducts = productos;
         }
+
         renderProducts(filteredProducts);
     };
 
-    // Event listeners para los enlaces del menú
     document.querySelectorAll('.main-nav a').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const category = e.target.getAttribute('href').substring(1);
+            const category = e.target.getAttribute('href').substring(1).toLowerCase();
             filterProducts(category);
         });
     });
 
-    // Cargar los productos al inicio
     fetchProductos();
     updateCartCount();
 });
-
