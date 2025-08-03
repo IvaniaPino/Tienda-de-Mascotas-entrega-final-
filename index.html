@@ -1,41 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda de Mascotas</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800">
 
-    <header class="header">
-        <a href="/"><h1>Tienda de Mascotas</h1></a>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="#alimentos">Alimentos</a></li>
-                <li><a href="#cuidados">Cuidados</a></li>
-                <li><a href="#habitad">Hábitat</a></li>
-                <li><a href="#otros">Otros</a></li>
-            </ul>
-        </nav>
-        <div class="cart-summary-header">
-            <button id="view-cart-btn">
-                Ver Carrito (<span id="cart-count">0</span>)
-            </button>
+    <header class="bg-indigo-600 text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto">
+            <nav class="flex justify-between items-center">
+                <h1 class="text-3xl font-bold">Pet Shop</h1>
+                <button id="view-cart-btn" class="relative bg-white text-indigo-600 rounded-full p-2 hover:bg-gray-200 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.182 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span id="cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">0</span>
+                </button>
+            </nav>
+            <div id="categories-menu" class="flex justify-center gap-4 mt-4 flex-wrap"></div>
         </div>
     </header>
 
-    <main class="container">
-        <section id="product-list" class="product-grid">
-            <p>Cargando productos...</p>
-        </section>
+    <main class="container mx-auto mt-8 p-4">
+        <section id="product-list" class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"></section>
     </main>
 
-    <script src="script.js"></script>
 </body>
 </html>
-
